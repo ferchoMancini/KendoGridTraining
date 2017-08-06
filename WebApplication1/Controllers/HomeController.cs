@@ -139,6 +139,12 @@ namespace WebApplication1.Controllers
             return allSeniority;
         }
 
+        public ActionResult ReadSkills([DataSourceRequest] DataSourceRequest request, Developer developer)
+        {
+            // clientData.Data = 1
+            return View("Index", developer);
+        }
+
         #endregion Get data
     }
 }

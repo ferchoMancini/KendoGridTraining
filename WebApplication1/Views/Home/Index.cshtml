@@ -33,7 +33,7 @@
 
     <div class="form-group">
 
-        @(Html.Kendo().Grid(Model.AllSkill)
+        @(Html.Kendo().Grid<WebApplication1.Models.Skill>()
             .Name("grid")
             .Columns(columns =>
             {
@@ -57,6 +57,7 @@
                 .ServerOperation(false)
                 .Update(update => update.Action("EditingCustom_Update", "Home"))
                 .Destroy(destroy => destroy.Action("EditingCustom_Destroy", "Home"))
+                .Read(read => read.Action("ReadSkills", "Home").Data("getClientDataModel"))
                 ))
         
         <br />
@@ -67,6 +68,12 @@
 </form>
 
 <script>
+
+    function getClientDataModel() {
+        return {
+            Developer: $('#form').serializeObject()
+        };
+    }
 
     //Convert form data to JavaScript object with jQuery http://stackoverflow.com/a/1186309/1849455
     $.fn.serializeObject = function () {
